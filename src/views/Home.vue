@@ -12,43 +12,7 @@
     <div class="recommended">
 
       <div v-for="product in inventory.slice(0,3)" :key="product.id" class="card">
-        <div class="card-title">
-          {{ product.name }}
-        </div>
-        <div class="card-body">
-          <i class="icofont-10x icofont-{{ product.icon }}"></i>
-          <form>
-            <div class="row">
-              <div class="cell">
-                <label>Type:</label>
-              </div>
-              <div class="cell">
-                <em>{{ product.type }}</em>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell">
-                <label>Price:</label>
-              </div>
-              <div class="cell">
-                {{ product.price.USD }}
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell">
-                <label>Quantity:</label>
-              </div>
-              <div class="cell">
-                <input type="number" v-model.number="product.quantity">
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="card-footer">
-          <button @click="addToCart(product)" class="btn btn-light">
-            Add to cart
-          </button>
-        </div>
+        <ProductCard :product="product" :addToCart="addToCart" />
       </div>
 
     </div>
@@ -58,6 +22,8 @@
 
 <script>
 // @ is an alias to /src
+
+import ProductCard from '@/components/ProductCard.vue'
 
 export default {
   name: 'Home',
@@ -70,6 +36,6 @@ export default {
     'inventory',
     'addToCart'
   ],
-  components: {}
+  components: { ProductCard }
 }
 </script>
