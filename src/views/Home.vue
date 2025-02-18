@@ -66,9 +66,10 @@ export default {
       cart: []
     }
   },
-  props: {
-    inventory: Array
-  },
+  props: [
+    'inventory',
+    'addToCart'
+  ],
   components: {}
 }
 </script>
