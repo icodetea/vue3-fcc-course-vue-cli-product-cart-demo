@@ -2,9 +2,14 @@
 export default {
   props: ['toggle', 'cart', 'inventory', 'remove'],
   methods: {
-    getPrice (name) {
-      const product = this.inventory.find(p => p.name === name)
+    getPrice (id) {
+      // eslint-disable-next-line eqeqeq
+      const product = this.inventory.find(p => p.id == id) || 0
       return product.price.USD
+    },
+    getName (id) {
+      // eslint-disable-next-line eqeqeq
+      return this.inventory.find(p => p.id == id).name || 'Product Name Not Found'
     },
     calculateTotal () {
       return Object.entries(this.cart).reduce((acc, curr, index) =>
@@ -38,15 +43,15 @@ export default {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(quantity, name, i) in cart" :key="i">
+            <tr v-for="(quantity, id) in cart" :key="id">
               <td><i class="icofont-carrot icofont-3x"></i></td>
-              <td>{{ name }}</td>
-              <td>{{ '$' + getPrice(name) }}</td>
+              <td>{{ getName(id) }}</td>
+              <td>{{ '$' + getPrice(id) }}</td>
               <td class="center">{{ quantity }}</td>
-              <td> {{ '$' + quantity * getPrice(name) }}</td>
+              <td> {{ '$' + quantity * getPrice(id) }}</td>
               <td class="center">
                 <button class="btn btn-light cart-remove"
-                        @click="remove(name)"
+                        @click="remove(id)"
                 >
                   &times;
                 </button>

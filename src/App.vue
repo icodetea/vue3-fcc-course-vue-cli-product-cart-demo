@@ -50,16 +50,16 @@ export default {
   },
   methods: {
     addToCart (product, quantity) {
-      if (!this.cart[product.name]) {
-        this.cart[product.name] = 0
+      if (!this.cart[product.id]) {
+        this.cart[product.id] = 0
       }
-      this.cart[product.name] += quantity
+      this.cart[product.id] += quantity
     },
     toggleSidebar () {
       this.showSidebar = !this.showSidebar
     },
-    removeItem (name) {
-      delete this.cart[name]
+    removeItem (id) {
+      delete this.cart[id]
     }
   },
   computed: {
